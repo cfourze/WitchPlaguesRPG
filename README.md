@@ -1,3 +1,1 @@
 # WitchPlaguesRPG
-
-test
