@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="DialogueGroup" load_steps=6 format=3 uid="uid://c7eidiee01ld6"]
+
+[ext_resource type="Script" uid="uid://63sfuw5hs200" path="res://Script/dialogue.gd" id="1_25u72"]
+[ext_resource type="Script" uid="uid://co33fiad2giy1" path="res://Script/dialogue_group.gd" id="2_i7jes"]
+[ext_resource type="Texture2D" uid="uid://bsi5eqvk3ylc7" path="res://Sprite/avatar/Profile_Ema.png" id="2_nrjak"]
+
+[sub_resource type="Resource" id="Resource_25u72"]
+script = ExtResource("1_25u72")
+character_name = "艾玛"
+content = "魔女图鉴，没什么好看的。"
+avatar = ExtResource("2_nrjak")
+show_on_left = true
+metadata/_custom_type_script = "uid://63sfuw5hs200"
+
+[sub_resource type="Resource" id="Resource_i7jes"]
+script = ExtResource("1_25u72")
+character_name = "艾玛"
+content = "（合上了书）"
+avatar = ExtResource("2_nrjak")
+show_on_left = true
+metadata/_custom_type_script = "uid://63sfuw5hs200"
+
+[resource]
+script = ExtResource("2_i7jes")
+dialogue_list = Array[ExtResource("1_25u72")]([SubResource("Resource_25u72"), SubResource("Resource_i7jes")])
+metadata/_custom_type_script = "uid://co33fiad2giy1"
