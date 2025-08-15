@@ -11,11 +11,12 @@ extends Control
 
 var dialogue_index := 0
 var typing_tween : Tween
-var e_key_released = false 
 
 func display_next_dialogue():
 	if dialogue_index >= len(main_dialogue.dialogue_list):
 		visible = false
+		Global.can_move = true
+		$"..".queue_free()
 		return
 	
 	var dialogue := main_dialogue.dialogue_list[dialogue_index]
@@ -41,13 +42,12 @@ func display_next_dialogue():
 	
 func _ready() -> void:
 	display_next_dialogue()
+	Global.can_move = false
 	
 func append_character(character : String):
 	text_box.text += character
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_released("interact"):
-		e_key_released = true
-	if event.is_action_pressed("interact") and e_key_released and visible:
+func _unhandled_input(event: InputEvent) -> void:	
+	if event.is_action_pressed("interact") :
 		display_next_dialogue()

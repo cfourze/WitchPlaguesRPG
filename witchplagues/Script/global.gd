@@ -7,7 +7,8 @@ var player_start_posx = 384
 var player_start_posy = 216
 
 var player_first_loadin : bool = true
-
+var can_move = true
+var in_dialogue = false
 
 func finish_changescenes():
 	if transition_scene:

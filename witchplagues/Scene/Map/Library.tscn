@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=4 uid="uid://de37i4cxvbtmp"]
+[gd_scene load_steps=18 format=4 uid="uid://de37i4cxvbtmp"]
 
 [ext_resource type="Script" uid="uid://bw1o8ejqok83s" path="res://Script/Map/library.gd" id="1_j4rjg"]
 [ext_resource type="Texture2D" uid="uid://b0jljx17trjh0" path="res://Sprite/bg/library_tiled.png" id="2_c7br7"]
 [ext_resource type="AudioStream" uid="uid://bconj8ksnduxy" path="res://Audio/BGM/Bgm_001_001_Loop.ogg" id="3_vxtdk"]
 [ext_resource type="PackedScene" uid="uid://sovqp5lflgev" path="res://Scene/Player.tscn" id="4_ll7gk"]
-[ext_resource type="PackedScene" uid="uid://3we2cdvx12in" path="res://Scene/control.tscn" id="5_c7br7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sjtuv"]
 texture = ExtResource("2_c7br7")
@@ -102,6 +101,29 @@ size = Vector2(48, 36)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j4rjg"]
 size = Vector2(43.3125, 28.5)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_c7br7"]
+polygon = PackedVector2Array(0, 0, 200, 0, 100, 264)
+
+[sub_resource type="Gradient" id="Gradient_c7br7"]
+offsets = PackedFloat32Array(0.012987, 0.811688)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vxtdk"]
+gradient = SubResource("Gradient_c7br7")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.916667, 0.0833333)
+metadata/_snap_enabled = true
+metadata/_snap_count = 12
+
+[sub_resource type="Gradient" id="Gradient_vxtdk"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ll7gk"]
+gradient = SubResource("Gradient_vxtdk")
+fill_from = Vector2(0.5, 0.8)
+fill_to = Vector2(0.5, 0.2)
+metadata/_snap_enabled = true
+
 [node name="Library" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_j4rjg")
@@ -143,21 +165,83 @@ collision_mask = 2
 position = Vector2(0, 29)
 shape = SubResource("RectangleShape2D_dqx25")
 
-[node name="Interactable" type="Area2D" parent="."]
+[node name="InteractableArea" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+[node name="Interactable" type="CollisionShape2D" parent="InteractableArea"]
 position = Vector2(527, 703)
 shape = SubResource("RectangleShape2D_j4rjg")
 
-[node name="Dialogue" type="CanvasLayer" parent="."]
-process_mode = 3
-visible = false
+[node name="Light" type="Node2D" parent="."]
 
-[node name="Control" parent="Dialogue" instance=ExtResource("5_c7br7")]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Light"]
+position = Vector2(111, 42)
+occluder = SubResource("OccluderPolygon2D_c7br7")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="Light"]
+position = Vector2(457, 40)
+occluder = SubResource("OccluderPolygon2D_c7br7")
+
+[node name="pointlight" type="Node2D" parent="Light"]
+
+[node name="PointLight2D" type="PointLight2D" parent="Light/pointlight"]
+position = Vector2(320, 259)
+scale = Vector2(2.54004, 2.47387)
+color = Color(0.862745, 0.662745, 0.247059, 1)
+energy = 1.61
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_vxtdk")
+
+[node name="PointLight2D2" type="PointLight2D" parent="Light/pointlight"]
+position = Vector2(448, 259)
+scale = Vector2(2.54004, 2.47387)
+color = Color(0.862745, 0.662745, 0.247059, 1)
+energy = 1.61
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_vxtdk")
+
+[node name="PointLight2D3" type="PointLight2D" parent="Light/pointlight"]
+position = Vector2(320, 547)
+scale = Vector2(2.54004, 2.47387)
+color = Color(0.862745, 0.662745, 0.247059, 1)
+energy = 1.61
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_vxtdk")
+
+[node name="PointLight2D4" type="PointLight2D" parent="Light/pointlight"]
+position = Vector2(448, 547)
+scale = Vector2(2.54004, 2.47387)
+color = Color(0.862745, 0.662745, 0.247059, 1)
+energy = 1.61
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_vxtdk")
+
+[node name="PointLight2D5" type="PointLight2D" parent="Light/pointlight"]
+position = Vector2(319, 834)
+scale = Vector2(2.54004, 2.47387)
+color = Color(0.862745, 0.662745, 0.247059, 1)
+energy = 1.61
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_vxtdk")
+
+[node name="PointLight2D6" type="PointLight2D" parent="Light/pointlight"]
+position = Vector2(448, 834)
+scale = Vector2(2.54004, 2.47387)
+color = Color(0.862745, 0.662745, 0.247059, 1)
+energy = 1.61
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_vxtdk")
+
+[node name="PointLight2D7" type="PointLight2D" parent="Light/pointlight"]
+position = Vector2(382.5, 164.5)
+scale = Vector2(4.89063, 3.54688)
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 1.5
+texture = SubResource("GradientTexture2D_ll7gk")
 
 [connection signal="body_entered" from="Classroom" to="." method="_on_classroom_body_entered"]
 [connection signal="body_exited" from="Classroom" to="." method="_on_classroom_body_exited"]
-[connection signal="area_entered" from="Interactable" to="." method="_on_interactable_area_entered"]
-[connection signal="area_exited" from="Interactable" to="." method="_on_interactable_area_exited"]
+[connection signal="area_entered" from="InteractableArea" to="." method="_on_interactable_area_entered"]
+[connection signal="area_exited" from="InteractableArea" to="." method="_on_interactable_area_exited"]

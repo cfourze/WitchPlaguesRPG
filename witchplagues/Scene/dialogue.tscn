@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3 uid="uid://ceypo4ax872oh"]
+
+[ext_resource type="Script" uid="uid://dp2la72ccg0h6" path="res://Script/dialogue_manager.gd" id="1_l7dqm"]
+[ext_resource type="Texture2D" uid="uid://bsi5eqvk3ylc7" path="res://Sprite/avatar/Profile_Ema.png" id="2_m6dxm"]
+[ext_resource type="Texture2D" uid="uid://3jq23nkby1g2" path="res://Sprite/avatar/Profile_Hiro.png" id="3_4k4du"]
+
+[node name="Dialogue" type="CanvasLayer"]
+
+[node name="dialogue" type="Control" parent="." node_paths=PackedStringArray("character_name_text", "text_box", "left_avatar", "right_avatar")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l7dqm")
+character_name_text = NodePath("HBoxContainer/Panel/MarginContainer/VBoxContainer/name")
+text_box = NodePath("HBoxContainer/Panel/MarginContainer/VBoxContainer/content")
+left_avatar = NodePath("HBoxContainer/LeftAvatar")
+right_avatar = NodePath("HBoxContainer/RightAvatar")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="dialogue"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -113.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="LeftAvatar" type="TextureRect" parent="dialogue/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+texture = ExtResource("2_m6dxm")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="dialogue/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="dialogue/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="dialogue/HBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="name" type="Label" parent="dialogue/HBoxContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "名字占位"
+
+[node name="content" type="Label" parent="dialogue/HBoxContainer/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "内容占位"
+autowrap_mode = 3
+
+[node name="RightAvatar" type="TextureRect" parent="dialogue/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+texture = ExtResource("3_4k4du")
+expand_mode = 2
+stretch_mode = 5

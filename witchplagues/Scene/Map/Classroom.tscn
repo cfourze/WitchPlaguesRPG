@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://bjyt7m6pnyjo2"]
+[gd_scene load_steps=11 format=4 uid="uid://bjyt7m6pnyjo2"]
 
 [ext_resource type="Script" uid="uid://3mcs6b7ev8cq" path="res://Script/Map/classroom.gd" id="1_wlktj"]
 [ext_resource type="Texture2D" uid="uid://b0jljx17trjh0" path="res://Sprite/bg/library_tiled.png" id="2_nwqnk"]
 [ext_resource type="AudioStream" uid="uid://b438wi81seq06" path="res://Audio/BGM/Bgm_006_001_Loop.ogg" id="3_ouobv"]
 [ext_resource type="PackedScene" uid="uid://sovqp5lflgev" path="res://Scene/Player.tscn" id="4_kun4q"]
+[ext_resource type="Texture2D" uid="uid://vhvfwmc6ifs" path="res://Sprite/bg/classroom_shadow.jpg" id="5_nwqnk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3p5wk"]
 texture = ExtResource("2_nwqnk")
@@ -114,6 +115,14 @@ shape = SubResource("RectangleShape2D_rbb3p")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Library"]
 position = Vector2(663, 597)
 shape = SubResource("RectangleShape2D_rbb3p")
+
+[node name="Light" type="Node2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="Light"]
+position = Vector2(384, 311)
+scale = Vector2(0.942402, 0.99359)
+energy = 0.24
+texture = ExtResource("5_nwqnk")
 
 [connection signal="body_entered" from="Library" to="." method="_on_library_body_entered"]
 [connection signal="body_exited" from="Library" to="." method="_on_library_body_exited"]

@@ -1,8 +1,10 @@
 extends CharacterBody2D
 
-const speed = 300
+@export var speed = 300
 
 func _physics_process(delta):
+	if !Global.can_move:
+		return
 	player_movement(delta)
 	current_camera()
 	
@@ -31,7 +33,7 @@ func player():
 func current_camera():
 	if Global.current_scene == "Library":
 		$Camera2D.limit_bottom = 1008
-	else:
+	elif Global.current_scene == "Classroom":
 		$Camera2D.limit_bottom = 624
 		
 	

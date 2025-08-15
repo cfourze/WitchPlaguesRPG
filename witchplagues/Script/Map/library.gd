@@ -1,6 +1,7 @@
 extends Node2D
 
 var book_interact = false
+var dialogue_scene := preload("res://Scene/dialogue.tscn")
 
 func _ready() -> void:
 	if Global.player_first_loadin:
@@ -30,8 +31,17 @@ func change_scene():
 		Global.finish_changescenes()
 
 func _unhandled_input(event: InputEvent) -> void:
+	var existing = get_tree().get_nodes_in_group("content")
+	if existing.size() > 0:
+		return
 	if event.is_action_pressed("interact") and book_interact:
-		$Dialogue.visible = true
+		_create_dialogue()
+
+func _create_dialogue():
+	var dialogue_instance = dialogue_scene.instantiate()
+	dialogue_instance.get_node("dialogue").main_dialogue = load("res://Dialogue/dialogue1.tres")
+	dialogue_instance.add_to_group("content") 
+	add_child(dialogue_instance)
 
 func _on_interactable_area_entered(area: Area2D) -> void:
 	book_interact = true
